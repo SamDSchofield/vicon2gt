@@ -1,21 +1,15 @@
 <launch>
-
-
-    <!-- dataset name -->
-    <!-- V1_01_easy, V1_02_medium, V1_03_difficult, V2_01_easy, V2_02_medium, V2_03_difficult -->
-    <arg name="dataset" value="V2_03_difficult" />
-    <arg name="folder"  value="/home/patrick/datasets/eth" />
-
+    <arg name="dataset" default="V1_01_easy" />
+    <arg name="folder"  default="/bags" />
+    <arg name="gt_topic" default="/vicon/firefly_sbx/firefly_sbx" />
 
     <!-- MASTER NODE! -->
     <node name="estimate_vicon2gt" pkg="vicon2gt" type="estimate_vicon2gt" output="screen" clear_params="true" required="true">
-<!--    <node name="estimate_vicon2gt" pkg="vicon2gt" type="estimate_vicon2gt" output="screen" clear_params="true" required="true" launch-prefix="gdb -ex run &#45;&#45;args">-->
 
         <!-- bag topics -->
         <param name="topic_imu"      type="string" value="/imu0" />
         <param name="topic_cam"      type="string" value="/cam0/image_raw" />
-<!--        <param name="topic_vicon"    type="string" value="/vicon/firefly_sbx/firefly_sbx" /> &lt;!&ndash; vicon room 1 &ndash;&gt;-->
-        <param name="topic_vicon"    type="string" value="vicon/firefly_sbx/firefly_sbx" /> <!-- vicon room 2 -->
+        <param name="topic_vicon"    type="string" value="$(arg gt_topic)" /> <!-- vicon room 2 -->
 
         <!-- bag parameters -->
         <param name="path_bag"    type="string" value="$(arg folder)/$(arg dataset).bag" />
@@ -49,9 +43,5 @@
         <param name="gyroscope_random_walk"        type="double"   value="1.9393e-05" />
         <param name="accelerometer_noise_density"  type="double"   value="2.0000e-3" />
         <param name="accelerometer_random_walk"    type="double"   value="3.0000e-3" />
-
-
     </node>
-
-
 </launch>

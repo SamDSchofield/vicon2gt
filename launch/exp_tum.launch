@@ -1,15 +1,9 @@
 <launch>
-
-
-    <!-- dataset name -->
-    <!-- dataset-corridor1_512_16, dataset-room1_512_16 -->
-    <arg name="dataset" value="dataset-room1_512_16" />
-    <arg name="folder"  value="/home/patrick/datasets/tum" />
-
+    <arg name="dataset" default="tum_room1" />
+    <arg name="folder"  default="/bags" />
 
     <!-- MASTER NODE! -->
     <node name="estimate_vicon2gt" pkg="vicon2gt" type="estimate_vicon2gt" output="screen" clear_params="true" required="true">
-        <!--    <node name="estimate_vicon2gt" pkg="vicon2gt" type="estimate_vicon2gt" output="screen" clear_params="true" required="true" launch-prefix="gdb -ex run &#45;&#45;args">-->
 
         <!-- bag topics -->
         <param name="topic_imu"      type="string" value="/imu0" />
@@ -50,9 +44,5 @@
         <param name="gyroscope_random_walk"        type="double"   value="1.9393e-05" />
         <param name="accelerometer_noise_density"  type="double"   value="2.0000e-3" />
         <param name="accelerometer_random_walk"    type="double"   value="3.0000e-3" />
-
-
     </node>
-
-
 </launch>
