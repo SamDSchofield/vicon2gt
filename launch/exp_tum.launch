@@ -1,6 +1,8 @@
 <launch>
     <arg name="dataset" default="tum_room1" />
     <arg name="folder"  default="/bags" />
+    <arg name="gt_topic" default="not actually used, just making it consistent with eth" />
+
 
     <!-- MASTER NODE! -->
     <node name="estimate_vicon2gt" pkg="vicon2gt" type="estimate_vicon2gt" output="screen" clear_params="true" required="true">
